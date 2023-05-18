@@ -1,0 +1,45 @@
+FOLDER CONTENTS
+---------------
+- Manual with detailed steps and config information to run Jarvis on your local machine and/or deploy Jarvis to AWS (JarvisSystemManual.pdf)
+- Jarvis data source config file (sample_minifi_config_file.cfg)
+- Jarvis stream processor config file (sample_nifi_config_file.cfg)
+- Current version of code for Jarvis stream processor (cloud-processor.zip).
+- Current version of code for Jarvis data source (edge-processor.zip)
+
+For AWS experiments, you need to use NiFi/MiNiFi setup. 
+Latest version of Jarvis code is also available at https://gitlab.engr.illinois.edu/sandur2/jarvis-local/-/tree/cleaned_up_code
+
+SETUP TO REPRODUCE EXPERIMENTS
+------------------------------
+We aren't able to provide original datasets (please see DATASETS section below). But we have created sample datasets to validate our system. Please refer to the manual JarvisSystemManual.pdf contained in the zip file, chapter "Section 6 experiments on AWS" for reproducing AWS experiments from the paper. 
+
+CODE
+----
+In the jarvis-local repository (link:https://gitlab.engr.illinois.edu/sandur2/jarvis-local/-/tree/cleaned_up_code), stream processor code can be found at jarvis-local/myprocessor/cloud-processor. Data source code can be found at jarvis-local/myprocessor/edge-processor.
+
+Tests to run (in sequence) for Jarvis end-to-end on your local machine:
+1) data source code in edge-processor: test name is "com.jarvis.processors.edge.MyProcessorTest.TestIntegration"
+2) stream processor code in cloud-processor: test name is "com.jarvis.processors.cloud.MyProcessorTest.TestIntegrationPingMesh"
+
+CONFIG FILE
+-----------
+All experiments from paper can be run by changing parameters in the Jarvis config files on MiNiFi and NiFi side. 
+Input to Jarvis data source: data source config file (which also contains path to monitoring input file to process)
+Input to Jarvis stream processor: stream processor config file 
+
+For detailed information about config file entries, please see JarvisSystemManual.pdf contained in the zip file.
+
+DATASETS
+--------
+Unfortunately, we are not able to share the datasets used in the paper yet, as they are traces from a real production system running in an enterprise datacenter. But we have prepared sample datasets which we have provided in the compressed zip files for stream processor and data source, as well as hosted in the jarvis-local (link: https://gitlab.engr.illinois.edu/sandur2/jarvis-local/-/tree/cleaned_up_code) code repository. 
+
+SAMPLE DATA LOCATION
+---------------------
+Some of the sample inputs were too large. So you can find the input files required to run all the tests on your local machine, at the following locations:
+1) Jarvis stream processor in cloud-processor.zip has test files located at: jarvis-local/myprocessor/cloud-processor/nifi-cloud-processors/testInput
+2) Jarvis data source node in edge-processor.zip has test files located at: jarvis-local/myprocessor/edge-processor/nifi-edge-processors/testInput
+
+
+
+
+
